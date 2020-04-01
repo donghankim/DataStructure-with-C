@@ -268,7 +268,90 @@ int main(void){
 Ive included two methods to access file content; fscanf and fgets. Wih fscanf, the code reads one word at a time, whereas fgets reads the entire line. If you want to modify a file, then just set the fopen mode to "a" for append. For practice, try creating a program where you copy the contents of one file and move it to another new file.
 
 ### Dynamic Memory Manipulation
-This is the last part of the C review section.
+This is the last part of the C review section. When you compile your C code, your computer allocated a certain amount of memory in the RAM (random access memory) to allow for your computer to execute your code. This memory allocation can be divided into four different sections; code/text, global & static variables, stack and heap. If you dont know what this is then I highly recommend that you study this first before moving on. With dyanmic memory manipulation, we are dealing with the heap section of the RAM. Unlike stack where the entire memory is cleared at the end of a stack frame, heap retains all data until the user tells the computer to "free" the allocated memory. Moreover, with dyanmic memory, we can change the size of the memory allocated after the declaration. For example, if you initialize an array of integers of size 10, then the size of that array cant be changed for the entire life time of that code. However, with dynamic memory, this is possible. The four methods we use for dynamic memory manipulation is <strong>malloc(), calloc(), realloc()</strong> and <strong>free()</strong>. Lets first look at malloc() and calloc().
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+
+    // casting to int pointer
+    int* number_ptr = (int*) malloc(sizeof(int));
+    *number_ptr = 100;
+    printf("value of our number variable in heap memory: %d\n", *number_ptr);
+
+    // enough memory for 10 integers
+    int* numbers_ptr = (int*) malloc(5 * sizeof(int));
+    *numbers_ptr = 1;
+    *(numbers_ptr + 1) = 2;
+    *(numbers_ptr + 2) = 3;
+
+    printf("%d %d %d \n", *(numbers_ptr), *(numbers_ptr + 1), *(numbers_ptr + 2));
+    printf("%d\n", numbers_ptr[0]); // returns 1
+}
+```
+What malloc() does is it saves a certain size of memory (represented in bytes) in the heap memory. However, because malloc() does not know what kind of data you are going to store in that slot of memory, it returns a void pointer. You must cast this pointer to the type of pointer you are working with (in the code above, integer). The sizeof(int) code just tells the computer we want memory that is large enough to just fit one int value. However, for numbers_ptr, we have allocated enough memory for 5 integers. Now numbers_ptr can be used like an array. One thing to note is that when malloc() makes memory, it does not initialize the value of the memory space. In other words, in the code above, if we were to write <strong>printf("%d\n", numbers_ptr[4])</strong>, this will return a garbage value.
+
+With calloc(), the only difference is that it initliazes all values to 0.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+
+    int* numbers_ptr = (int*) calloc(10, sizeof(int));
+
+    for(int i = 0; i < 10; i++){
+        printf("%d ", *(numbers_ptr + i));
+    }printf("\n");
+
+}
+```
+When using calloc(), we have to insert the number of elements we want our memory slot to fit. In the code above its 10. And because calloc() initializes all elements to 0, when we print all values in our newly initialized memory slot, we get 0 0 0 ...
+
+An important think to remember is when you use memory from the heap, you always <strong>always</strong> have to free the memory you used after you finish using it. Unlike the stack, the heap will retain the memory you allocate throughout the lifetime of the program. If you dont free the heap, then you memory leak can occur which will cause your program to crash. Therefore, when you are using malloc() or calloc() always make sure to free up your memory after usage.
+
+```c
+    // continueing on from the code above
+    free(numbers_ptr);
+```
+The last part of dynamic memory allocation is realloc(). This method lets you reallocate or resize the memory partition you made. This is very useful for arrays when the size of the array needs to change. The code below shows realloc() being used.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void print_arr(int arr[], int len){
+    for(int i = 0; i < len; i++){
+        printf("%d ", arr[i]);
+    }printf("\n");
+}
+
+void set_arr(int arr[], int len){
+    for(int i = 0; i < len; i++){
+        arr[i] = 1 + rand()%10;
+    }
+}
+
+int main(void){
+
+    int* arr_ptr = (int*) malloc(10*sizeof(int));
+    set_arr(arr_ptr, 10);
+    print_arr(arr_ptr, 10);
+
+    // still retains the value of the first 10 elements
+    arr_ptr = realloc(arr_ptr, 20*sizeof(int));
+    print_arr(arr_ptr, 20);
+
+    return 0;
+}
+```
+When using realloc(), you dont need to free the previous pointer used. The compiler does that for you. You only need to use the free() method when using malloc and calloc.
+
+This concludes the C review section. Make sure you understand everything I covered here because if you dont then you will have a hard time understanding the upcoming sections in this repository.
+
+## Abstract Data Structures (ADT)
+
+
 
 
 
