@@ -1,4 +1,4 @@
-# Data-Structures-with-C
+# Data Structure with C
 Various data structures implemented in C
 
 ## Introduction
