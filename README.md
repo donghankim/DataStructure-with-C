@@ -384,11 +384,23 @@ int main(void){
     // cast void* to int*, then dereference
     printf("fist node value: %d\n", *(int*)n1->data);
 
-    return 0;
-}
 ```
-The code (available in Linked List folder) above shows how we can create a basic ADT for linked lists. We first create a Node struct that holds a void pointer to the data that the node contains, and a link to a different struct node. The createNode function simply initializes a new node with the value we want the node to carry.
+The code (available in Linked List folder) above shows how we can create a basic ADT for linked lists. We first create a Node struct that holds a void pointer to the data that the node contains, and a link to a different struct node. The createNode function simply initializes a new node with the value we want the node to carry. Adding more nodes to our linked list is very easy.
+```c
+    // continuing from above
+    new_node = (int*) malloc(sizeof(int));
+    *new_node = 100;
+    n1->link = createNode(new_node);
 
+    char* new_char_node = (char*) malloc(sizeof(char));
+    *new_char_node = 'A';
+    n1->link->link = createNode(new_char_node);
+
+    printf("first node value: %d\nsecond node value: %d\nthird node value: %c\n", *(int*)n1->data, *(int*)n1->link->data, *(char*)n1->link->link->data);
+
+    return 0;
+````
+Because our node struct recieves a void pointer, we can allow our linked list to accept nodes with different data types. This is called generic coding.
 
 
 
