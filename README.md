@@ -352,8 +352,42 @@ This concludes the C review section. Make sure you understand everything I cover
 ## Abstract Data Type (ADT)
 A data structure is simply a way of "joining" and organizing data together. An abstract data type is a data declaration packaged together with the operations that are meaningful for the data type. Essentially an ADT is what gives a data structure functionality. We encapsulate the data and the operations on the data, and then hide them from the user. We are creating an ADT of a data structure, and give it functionality so that other users can use the data structure by adding and removing data as an example. However, we hide (encapsulate) the details of the ADT, allowing only the creator of the ADT to actually have full access to the ADT. ADT's need to allow for generic code, meaning that it must allow for mutiple data types such as ints, doubles, char, etc... In this section, I will cover some of the popular data structures used in the real world, and also provide the ADT for that data structure so that users can use and data structure created.
 
-## Linked-List
+## Linked List
+A linked list is similar to an array. However, unlike arrays, linked lists do not necessarily order data in a sequential manner. Instead, each element in a linked-list "points" to the next element. There are mnay varitations of a linked list. For example, some linked list can point to multiple elements. For this repository, I will only implement a <strong>linear linked list</strong> (each element can only point to 1 or 0 elements).
 
+The benefits of a linked list is that inserting and removing elements can be done very efficiently. Instead of going through the entire list (arrays that to do this), a linked list can very quickly insert and remove elements. However, one drawback is the fact that searching a linked list can be computationally expensive, because we can only perfrom a sequential search.
+
+When using linked lists, we refer to each element as <strong>nodes</strong>. Each node contains <strong>data</strong>(the actual value of the node) and a <strong>link</strong> (the address of the next node). In C, we will represent a node using a struct.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node{
+    void* data;
+    struct node* link;
+
+}Node;
+
+Node* createNode(void* value){
+    Node* nodePtr = (Node*) malloc(sizeof(Node));
+    nodePtr->data = value;
+    nodePtr->link = NULL;
+    return nodePtr;
+}
+
+int main(void){
+
+    int* new_node = (int*) malloc(sizeof(int));
+    *new_node = 10;
+    Node* n1 = createNode(new_node);
+
+    // cast void* to int*, then dereference
+    printf("fist node value: %d\n", *(int*)n1->data);
+
+    return 0;
+}
+```
+The code (available in Linked List folder) above shows how we can create a basic ADT for linked lists. We first create a Node struct that holds a void pointer to the data that the node contains, and a link to a different struct node. The createNode function simply initializes a new node with the value we want the node to carry.
 
 
 
