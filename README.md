@@ -312,7 +312,7 @@ When using calloc(), we have to insert the number of elements we want our memory
 An important think to remember is when you use memory from the heap, you always <strong>always</strong> have to free the memory you used after you finish using it. Unlike the stack, the heap will retain the memory you allocate throughout the lifetime of the program. If you dont free the heap, then you memory leak can occur which will cause your program to crash. Therefore, when you are using malloc() or calloc() always make sure to free up your memory after usage.
 
 ```c
-    // continueing on from the code above
+    // continuing on from the code above
     free(numbers_ptr);
 ```
 The last part of dynamic memory allocation is realloc(). This method lets you reallocate or resize the memory partition you made. This is very useful for arrays when the size of the array needs to change. The code below shows realloc() being used.
@@ -349,7 +349,11 @@ When using realloc(), you dont need to free the previous pointer used. The compi
 
 This concludes the C review section. Make sure you understand everything I covered here because if you dont then you will have a hard time understanding the upcoming sections in this repository.
 
-## Abstract Data Structures (ADT)
+## Abstract Data Type (ADT)
+A data structure is simply a way of "joining" and organizing data together. An abstract data type is a data declaration packaged together with the operations that are meaningful for the data type. Essentially an ADT is what gives a data structure functionality. We encapsulate the data and the operations on the data, and then hide them from the user. We are creating an ADT of a data structure, and give it functionality so that other users can use the data structure by adding and removing data as an example. However, we hide (encapsulate) the details of the ADT, allowing only the creator of the ADT to actually have full access to the ADT. ADT's need to allow for generic code, meaning that it must allow for mutiple data types such as ints, doubles, char, etc... In this section, I will cover some of the popular data structures used in the real world, and also provide the ADT for that data structure so that users can use and data structure created.
+
+## Linked-List
+
 
 
 
