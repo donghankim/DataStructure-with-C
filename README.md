@@ -399,6 +399,7 @@ The code (available in Linked List folder) above shows how we can create a basic
     printf("first node value: %d\nsecond node value: %d\nthird node value: %c\n", *(int*)n1->data, *(int*)n1->link->data, *(char*)n1->link->link->data);
 
     return 0;
+}
 ````
 Because our node struct recieves a void pointer, we can allow our linked list to accept nodes with different data types. This is called generic coding.
 
