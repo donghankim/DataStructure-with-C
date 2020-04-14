@@ -1,34 +1,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+create_list
+retrive_node
+destroy_list
+add_node
+search_list
+remove_node
+*/
+
 typedef struct node{
     void* data;
     struct node* link;
+} Node;
 
-}Node;
+typedef struct{
+    int count;
+    Node* head_node;
+} LinkedList;
 
-Node* createNode(void* value){
-    Node* nodePtr = (Node*) malloc(sizeof(Node));
-    nodePtr->data = value;
-    nodePtr->link = NULL;
-    return nodePtr;
+// Creates an empty linked list
+LinkedList* create_list(void){
+
+    LinkedList* ll_ptr = (LinkedList*) malloc(sizeof(LinkedList));
+
+    ll_ptr->count = 0;
+    ll_ptr->head_node = NULL;
+
+    return ll_ptr;
 }
+
+void add_node(LinkedList* ll_ptr, void* new_data){
+
+    Node* new_node = (Node*) malloc(sizeof(Node));
+    new_node->data = new_data;
+    new_node->link = NULL;
+
+    if (ll_ptr->count == 0){
+        ll_ptr->head_node = new_node;
+    }else{
+        Node* tempNode = ll_ptr->head_node;
+
+        while(tempNode->link != NULL){
+            tempNode = tempNode->link;
+        }
+        tempNode->link = new_node;
+    }
+    (ll_ptr->count)++;
+
+}
+
+
 
 int main(void){
 
-    int* new_node = (int*) malloc(sizeof(int));
-    *new_node = 10;
-    Node* n1 = createNode(new_node);
+    LinkedList* ll_ptr = create_list();
 
-    new_node = (int*) malloc(sizeof(int));
-    *new_node = 100;
-    n1->link = createNode(new_node);
+    int data1 = 20;
+    add_node(ll_ptr, &data1);
 
-    char* new_char_node = (char*) malloc(sizeof(char));
-    *new_char_node = 'A';
-    n1->link->link = createNode(new_char_node);
+    int data2 = 306;
+    add_node(ll_ptr, &data2);
 
-    printf("first node value: %d\nsecond node value: %d\nthird node value: %c\n", *(int*)n1->data, *(int*)n1->link->data, *(char*)n1->link->link->data);
+    char data3 = 'F';
+    add_node(ll_ptr, &data3);
+
+
+    printf("%d\n", *(int*)(ll_ptr->head_node->data));
+    printf("%d\n", *(int*)(ll_ptr->head_node->link->data));
+    printf("%c\n", *(char*)(ll_ptr->head_node->link->link->data));
 
     return 0;
 }

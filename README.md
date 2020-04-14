@@ -357,7 +357,7 @@ A linked list is similar to an array. However, unlike arrays, linked lists do no
 
 The benefits of a linked list is that inserting and removing elements can be done very efficiently. Instead of going through the entire list (arrays that to do this), a linked list can very quickly insert and remove elements. However, one drawback is the fact that searching a linked list can be computationally expensive, because we can only perfrom a sequential search.
 
-When using linked lists, we refer to each element as <strong>nodes</strong>. Each node contains <strong>data</strong>(the actual value of the node) and a <strong>link</strong> (the address of the next node). In C, we will represent a node using a struct.
+When using linked lists, we refer to each element as <strong>nodes</strong>. Each node contains <strong>data</strong>(the actual value of the node) and a <strong>link</strong> (the address of the next node). In C, we will represent a node using a struct. The following code will help you understand how linked lists work.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -377,20 +377,20 @@ Node* createNode(void* value){
 
 int main(void){
 
-    int* new_node = (int*) malloc(sizeof(int));
-    *new_node = 10;
-    Node* n1 = createNode(new_node);
+    int* new_int = (int*) malloc(sizeof(int));
+    *new_int = 10;
+    Node* n1 = createNode(new_int);
 
     // cast void* to int*, then dereference
     printf("fist node value: %d\n", *(int*)n1->data);
 
 ```
-The code (available in Linked List folder) above shows how we can create a basic ADT for linked lists. We first create a Node struct that holds a void pointer to the data that the node contains, and a link to a different struct node. The createNode function simply initializes a new node with the value we want the node to carry. Adding more nodes to our linked list is very easy.
+We first create a Node struct that holds a void pointer to the data that the node contains, and a link to a different struct node. The createNode function simply initializes a new node with the value we want the node to carry. Adding more nodes to our linked list is very easy.
 ```c
     // continuing from above
-    new_node = (int*) malloc(sizeof(int));
-    *new_node = 100;
-    n1->link = createNode(new_node);
+    new_int = (int*) malloc(sizeof(int));
+    *new_int = 100;
+    n1->link = createNode(new_int);
 
     char* new_char_node = (char*) malloc(sizeof(char));
     *new_char_node = 'A';
@@ -401,7 +401,10 @@ The code (available in Linked List folder) above shows how we can create a basic
     return 0;
 }
 ````
-Because our node struct recieves a void pointer, we can allow our linked list to accept nodes with different data types. This is called generic coding.
+Because our node struct recieves a void pointer, we can allow our linked list to accept nodes with different data types. This is called generic coding. The code in the linked list folder contains a seperate C file that has the ADT implementation of a linked list.
+
+## Stacks
+tba...
 
 
 
