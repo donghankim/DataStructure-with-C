@@ -29,17 +29,21 @@ int main(void){
     int data1 = 1;
     add_node(ll_ptr, &data1);
 
-    int data2 = 2;
+    char data2 = 'A';
     add_node(ll_ptr, &data2);
 
     int data3 = 3;
     add_node(ll_ptr, &data3);
 
-    int data4 = 4;
+    double data4 = 4.1;
     add_node(ll_ptr, &data4);
 
-    int data5 = 5;
+    float data5 = 5.2;
     insert_(ll_ptr, 2, &data5);
+
+    print_list(ll_ptr);
+
+    destroy_list(ll_ptr);
 
     return 0;
 }
@@ -192,15 +196,14 @@ void destroy_list(LinkedList* ll_ptr){
     Node* head = (Node*) malloc(sizeof(Node));
     Node* traverse = (Node*) malloc(sizeof(Node));
 
-    traverse = ll_ptr->head_node;
+    head = ll_ptr->head_node;
 
-    while(head->link != NULL){
-        head = traverse;
-        traverse = traverse->link;
+    while(head){
+        traverse = head;
+        head = traverse->link;
         free(traverse);
     }
 
-    free(head);
     ll_ptr->count = 0;
     free(ll_ptr);
 
