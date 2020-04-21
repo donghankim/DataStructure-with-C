@@ -352,10 +352,13 @@ This concludes the C review section. Make sure you understand everything I cover
 ## Abstract Data Type (ADT)
 A data structure is simply a way of "joining" and organizing data together. An abstract data type is a data declaration packaged together with the operations that are meaningful for the data type. Essentially an ADT is what gives a data structure functionality. We encapsulate the data and the operations on the data, and then hide them from the user. We are creating an ADT of a data structure, and give it functionality so that other users can use the data structure by adding and removing data as an example. However, we hide (encapsulate) the details of the ADT, allowing only the creator of the ADT to actually have full access to the ADT. ADT's need to allow for generic code, meaning that it must allow for mutiple data types such as ints, doubles, char, etc... In this section, I will cover some of the popular data structures used in the real world, and also provide the ADT for that data structure so that users can use and data structure created.
 
-## Linked List
-A linked list is similar to an array. However, unlike arrays, linked lists do not necessarily order data in a sequential manner. Instead, each element in a linked-list "points" to the next element. There are mnay varitations of a linked list. For example, some linked list can point to multiple elements. For this repository, I will only implement a <strong>linear linked list</strong> (each element can only point to 1 or 0 elements).
+## Stacks
+A stack is a linear list, with insertion and deletion restrictions. When using stacks, we can only insert (push) data to the "top" of the stack, and we can only remove (pop) data from the top as well. Think of a stack of books, the last book we place on top of the stack is also going to be the first book we remove from the stack. Because of this restriction, we call stacks <strong>LIFO</strong> (last-in first-out). When inserting data to any data structure, we need to be careful of overflow. This is when we try to add new data when the memory is full. With stacks, we call this stack overflow. You can check out the Stack folder to see the ADT implementation of a stack in C.
 
-The benefits of a linked list is that inserting and removing elements can be done very efficiently. Instead of going through the entire list (arrays that to do this), a linked list can very quickly insert and remove elements. However, one drawback is the fact that searching a linked list can be computationally expensive, because we can only perfrom a sequential search.
+## Linked List
+A linked list is similar to an array. However, unlike arrays, linked lists do not necessarily order data in a sequential manner. Instead, each element in a linked-list "points" to the next element. There are many varitations of a linked list. For example, some linked list can point to multiple elements. For this repository, I will only implement a <strong>linear linked list</strong> (each element can only point to 1 or 0 elements).
+
+The benefits of a linked list is that inserting and removing elements can be done very efficiently. Instead of going through the entire list (arrays to do this), a linked list can very quickly insert and remove elements. However, one drawback is the fact that searching a linked list can be computationally expensive, if we use sequential search. However, we can improve this if we insert elements in increasing order. If this is the case, we can use binary search to search the linked list.
 
 When using linked lists, we refer to each element as <strong>nodes</strong>. Each node contains <strong>data</strong>(the actual value of the node) and a <strong>link</strong> (the address of the next node). In C, we will represent a node using a struct. The following code will help you understand how linked lists work.
 ```c
@@ -403,8 +406,7 @@ We first create a Node struct that holds a void pointer to the data that the nod
 ````
 Because our node struct recieves a void pointer, we can allow our linked list to accept nodes with different data types. This is called generic coding. The code in the linked list folder contains a seperate C file that has the ADT implementation of a linked list.
 
-## Stacks
-tba...
+
 
 
 

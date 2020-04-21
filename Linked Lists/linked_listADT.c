@@ -78,8 +78,6 @@ void add_node(LinkedList* ll_ptr, void* new_data){
         tempNode->link = new_node;
     }
     (ll_ptr->count)++;
-
-    return;
 }
 
 // removes node at the end of a list
@@ -98,8 +96,6 @@ void remove_node(LinkedList* ll_ptr){
     traverse->link = NULL;
     free(del_node);
     (ll_ptr->count)--;
-
-    return;
 }
 
 // adds node to specified location (index)
@@ -127,8 +123,6 @@ void insert_(LinkedList* ll_ptr, int index, void* val){
     new_node->link = next_node;
 
     (ll_ptr->count)++;
-
-    return;
 }
 
 // removes node at specificed location (index)
@@ -154,8 +148,6 @@ void remove_(LinkedList* ll_ptr, int index){
     free(del_node);
 
     (ll_ptr->count)--;
-
-    return;
 }
 
 // returns node data at given location (index), but doesnt alter the node
@@ -190,7 +182,7 @@ void print_list(LinkedList* ll_ptr){
     printf("Data at Node %d is at location %p\n", i, traverse->data);
 }
 
-// frees dyanmic memory used in creating linked list -> error
+// frees dyanmic memory used in creating linked list
 void destroy_list(LinkedList* ll_ptr){
 
     Node* head = (Node*) malloc(sizeof(Node));
@@ -206,6 +198,4 @@ void destroy_list(LinkedList* ll_ptr){
 
     ll_ptr->count = 0;
     free(ll_ptr);
-
-    return;
 }
