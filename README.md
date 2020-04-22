@@ -355,7 +355,7 @@ A data structure is simply a way of "joining" and organizing data together. An a
 ## Linear Lists
 Linear lists are essentially an array with certain insertion and deletion restrictions. There are three different linear lists that this section will cover; linked list, stack and queue. Although the basic structure of linear lists are all different, they do share a common property: <strong>overflow</strong>. Oveflow is when you try to insert a new element to your list when the memory is full. Therfore, you need to make sure your memory has enough space before trying to add a new element.
 
-### Linked List
+### 1. Linked List
 A linked list is similar to an array. However, unlike arrays, linked lists do not necessarily order data in a sequential manner. Instead, each element in a linked-list "points" to the next element. There are many varitations of a linked list, some of which are not considered linear. For example, some linked list can point to multiple elements. For this repository, I will only implement a <strong>linear linked list</strong> (each element can only point to 1 or 0 elements).
 
 The benefits of a linked list is that inserting and removing elements can be done very efficiently. Instead of going through the entire list (arrays to do this), a linked list can very quickly insert and remove elements. However, one drawback is the fact that searching a linked list can be computationally expensive, if we use sequential search. However, we can improve this if we insert elements in increasing order, creating an ordered linked list. If this is the case, we can use binary search to search the linked list.
@@ -406,7 +406,7 @@ We first create a Node struct that holds a void pointer to the data that the nod
 ````
 Because our node struct recieves a void pointer, we can allow our linked list to accept nodes with different data types. This is called generic coding. The code in the linked list folder contains a C file that has the ADT implementation of a linked list. All preceding examples of linear data structures (stacks and queues) will follow this structure of using a Node struct to represent elements in the data structure. Once you understand linked lists, stacks and queues will be easy to understand.
 
-### Stacks
+### 2. Stacks
 A stack is a linear list with insertion and deletion restrictions. When using stacks, we can only insert (push) data to the "top" of the stack, and we can only remove (pop) data from the top as well. Think of a stack of books, the last book we place on top of the stack is also going to be the first book we remove from the stack. Because of this restriction, we call stacks <strong>LIFO</strong> (last-in first-out). My implementation of a stack is similar to the linked list implementation. I tried to use the same variable and function names as to that of the linked_listADT.c file. You can check out the Stack folder to see the ADT implementation of a stack in C. Because of the nature of an ADT structure, its difficult to print the contents of the stack using one function. Therefore, I created a function called <strong>int_print_stack(Stack* Stack_ptr)</strong> that has the ability of printing the contents of the stack only when the data inside the stack is an integer. The code below shows how the stack works if you declare all the data to be of int.
 ```c
 int main(void){
@@ -432,7 +432,7 @@ int main(void){
 }
 ```
 
-### Queues
+### 3. Queues
 A queue is also a linear list, but like a stack it has insertion and deletion restrictions. When inserting (enqueue) an element to a queue, we insert the element to the head/start of the queue. When deleting (dequeue) an element, we delete the element at the tail/end of the queue. An easy way to think about queues is by imagining a line. When you are in line to buy groceries, then the person who came first to the line leaves first, and whenever a new person joins the line, they join at the end of the line. Therefore, a queue is known as FIFO (first-in first-out). The only difference with a queue and a stack is the fact that new elements are added to the end of the queue, rather than at the start (like a stack). You can check out my implementation of a Queue in the Queue folder. Again, due to the nature of an ADT structure, you cant print the contents of the queue using one function. So like the stack file, I created a function where you can print the contents of the queue is all the data in the queue are of int type.
 
 This concludes the linear list section of this repository. Try to implement all three linear list structures by yourself.
