@@ -14,9 +14,9 @@ typedef struct head{
 Stack* create_stack(void);
 void push(Stack* Stack_ptr, void* new_data);
 void pop(Stack* Stack_ptr);
-void* peek(Stack* Stack_ptr);
-void int_print_stack(Stack* ll_ptr);
-void destroy_stack(Stack* ll_ptr);
+void* peak(Stack* Stack_ptr);
+void int_print_stack(Stack* Stack_ptr);
+void destroy_stack(Stack* Stack_ptr);
 
 int main(void){
 
@@ -32,7 +32,6 @@ int main(void){
     push(Stack_ptr, &data3);
 
     destroy_stack(Stack_ptr);
-
     return 0;
 }
 
@@ -77,7 +76,7 @@ void pop(Stack* Stack_ptr){
     }
 }
 
-void* peek(Stack* Stack_ptr){
+void* peak(Stack* Stack_ptr){
     if(Stack_ptr->count == 0){
         printf("Stack is empty...\n");
     } else{
@@ -103,6 +102,7 @@ void int_print_stack(Stack* Stack_ptr){
 }
 
 void destroy_stack(Stack* Stack_ptr){
+
     Node* head = Stack_ptr->head_node;
     Node* traverse;
 
