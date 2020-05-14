@@ -447,7 +447,7 @@ The <strong>leaf</strong> is any node with an outdegree is 0 (a node with no chi
 The <strong>level</strong> of a node is the distance from that node to the root node. The root node has a level of 0. The <strong>depth/height</strong> of a tree is the largest level plus 1. The image below should clear up some of these terminologies (depth of the image below is simply 3).
 
 <p align="center">
-  <img src = 'Images/tree.png' style="max-height: 100px; max-width: 70px;" />
+  <img src = 'Images/tree.png' style="max-height: 50px; max-width: 30px;" />
 </p>
 
 ### Binary Trees
