@@ -437,7 +437,19 @@ A queue is also a linear list, but like a stack it has insertion and deletion re
 
 This concludes the linear list section of this repository. Try to implement all three linear list structures by yourself.
 
-test $x_y = 10$
+## Trees
+In this section I will discuss a non-linear data structure called trees. All trees have a starting element (node) called the root. Imagine we have two nodes, A and B. If node A points to node B, then we say that node A is the parent node of node B and that node B is the child node of node A. In a tree, a node cannot have more than one parent, but can have many childrens.
 
+The <strong>degree</strong> of a node is the number of links coming in and out of the node in question. Any link that is coming into the node is called the indegree, and any link going out of the node is called the outdegree. Bascially the indegree tells us how many parents the node has, whilst the outdegree tells us how many children the node has. As mentioned above, the indree of any node in a tree (except the root) is 1 (since all nodes can only have one parent). The indegree of the root is 0 because the root is the starting node of the tree.
+
+The <strong>leaf</strong> is any node with an outdegree is 0 (a node with no child nodes). Two or more nodes with the same parent node are called <strong>siblings</strong>.
+
+The <strong>level</strong> of a node is the distance from that node to the root node. The root node has a level of 0. The <strong>depth/height</strong> of a tree is the largest level plus 1. The image below should clear up some of these terminologies.
+
+<p align="center">
+  <img src = 'Images/tree.png'/>
+</p>
+
+something else
 
 
