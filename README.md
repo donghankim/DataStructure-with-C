@@ -444,12 +444,14 @@ The <strong>degree</strong> of a node is the number of links coming in and out o
 
 The <strong>leaf</strong> is any node with an outdegree is 0 (a node with no child nodes). Two or more nodes with the same parent node are called <strong>siblings</strong>.
 
-The <strong>level</strong> of a node is the distance from that node to the root node. The root node has a level of 0. The <strong>depth/height</strong> of a tree is the largest level plus 1. The image below should clear up some of these terminologies.
+The <strong>level</strong> of a node is the distance from that node to the root node. The root node has a level of 0. The <strong>depth/height</strong> of a tree is the largest level plus 1. The image below should clear up some of these terminologies (depth of the image below is simply 3).
 
 <p align="center">
-  <img src = 'Images/tree.png'/>
+  <img src = 'Images/tree.png' style="max-height: 100px; max-width: 70px;" />
 </p>
 
-something else
+### Binary Trees
+A binary tree is one where all nodes in the tree cannot have more than 2 children (outdegree must be either 0, 1 or 2). We can calculate the minimum depth of a binary tree using this equation <em>floor(log_2(N))+1</em>. N represents the number of nodes in the binary tree. The maximum depth of a binary tree is simply the number of nodes N. Likewise, given the depth of the binary tree, we can calculate the minimum and maximum number of nodes in that tree. The minimum number of nodes is simply <em>2^d -1</em>, while the maximum number of nodes is d, where d is the depth of the binary tree.
+
 
 
