@@ -437,5 +437,7 @@ A queue is also a linear list, but like a stack it has insertion and deletion re
 
 This concludes the linear list section of this repository. Try to implement all three linear list structures by yourself.
 
+test $x_y = 10$
+
 
 
