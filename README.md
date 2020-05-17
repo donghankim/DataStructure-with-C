@@ -453,5 +453,11 @@ The <strong>level</strong> of a node is the distance from that node to the root 
 ### Binary Trees
 A binary tree is one where all nodes in the tree cannot have more than 2 children (outdegree must be either 0, 1 or 2). We can calculate the minimum depth of a binary tree using this equation <em>floor(log_2(N))+1</em>. N represents the number of nodes in the binary tree. The maximum depth of a binary tree is simply the number of nodes N. Likewise, given the depth of the binary tree, we can calculate the minimum and maximum number of nodes in that tree. The minimum number of nodes is simply <em>2^d -1</em>, while the maximum number of nodes is d, where d is the depth of the binary tree.
 
+#### Binary Search Tree
+A binary search tree is one variant of the binary tree. Searching, inserting and deleting elements are efficient when using a binary search tree structure. In order to create a valid binary tree, we need to keep three properties:
+1. All items in the left subtree are less than the root.
+2. All items in the right subtree are greater than or equal to the root.
+3. Each subtree is itself a binary tree.
+
 
 
