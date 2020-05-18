@@ -453,7 +453,7 @@ The <strong>level</strong> of a node is the distance from that node to the root 
 ### Binary Trees
 A binary tree is one where all nodes in the tree cannot have more than 2 children (outdegree must be either 0, 1 or 2). We can calculate the minimum depth of a binary tree using this equation <em>floor(log_2(N))+1</em>. N represents the number of nodes in the binary tree. The maximum depth of a binary tree is simply the number of nodes N. Likewise, given the depth of the binary tree, we can calculate the minimum and maximum number of nodes in that tree. The minimum number of nodes is simply <em>2^d -1</em>, while the maximum number of nodes is d, where d is the depth of the binary tree.
 
-#### Binary Search Tree
+### Binary Search Tree
 A binary search tree is one variant of the binary tree. Searching, inserting and deleting elements are efficient when using a binary search tree structure. In order to create a valid binary tree, we need to keep three properties:
 1. All items in the left subtree are less than the root.
 2. All items in the right subtree are greater than or equal to the root.
@@ -530,6 +530,37 @@ int main(void){
 ```
 In order to insert a new node, we use the <strong>create_node</strong> function to first create a node of type struct node. Then, in the <strong>insert_node</strong> function, we use recursion to indetify the location we want to insert our new node into. For example, consider the case when the values we want to insert is simply 9,2 and 1. The root node is created and 9 is assigned. Then when we insert the value 2, and one recursiv call is made. When we insert the value 2, two recursive calls are made. In all three cases, when the insert_node function terminates, we recieve the <strong>root node</strong> of the BST. This concept might be a little difficult to grasp so try writing down the function execution sequence.
 
-
-
-
+<strong>Deleting Nodes</strong>
+Deleting nodes is a little bit more complicated in BST. Essentially there are three cases for deleting nodes in BST. The first case is when the node we want to delete has no child nodes. In this case we can simply remove the node by freeing its memory allocation. The next case is when the node we want to delete has one child node. In this case we can return the address of the child node of the node we want to delete (therefore we preserve all the subtrees beneath the node we are trying to delete).
+```c
+NODE* delete_node(NODE* node, int val){
+    /*
+    code above deleted for simpler explanation
+    */
+    if(node->right == NULL && node->left == NULL){ // -> case1 : delete node has no child nodes
+        NODE* temp = node->left;
+        free(node);
+        return temp;
+    }
+    else if(node->right == NULL){  // case2: delete node has one child (only child on the left)
+        NODE* temp = node->left;
+        free(node);
+        return temp;
+    }
+    else if(node->left == NULL){  // case2: delete node has one child (only child on the right)
+        NODE* temp = node->right;
+        free(node);
+        return temp;
+    }
+}
+```
+The last case is when the node we are tyring to remove has 2 child nodes. In this case we have two options: the first option (and the option I coded) is to find the smallest node in the right subtree of the node we are trying to delete. By finding the smallest node in the right subtree, we are still retaining the sturcture and properties of the BST even after deletion. Another method is to find the maximum node in the left subtree of the node are trying to delete. Either methods work, and there is no difference in performance.
+```c
+    else{
+        NODE* temp = minNode(node->right);  // -> find the smallest node in the right subtree
+        node->data = temp->data;
+        node->right = delete_node(node->right, temp->data); // delete the duplicated node on the right side of the node we are tyring to delete
+        return node;
+    }
+```
+Check out the Binary Search Tree folder for the complete implementation.
