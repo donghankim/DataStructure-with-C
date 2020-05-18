@@ -9,14 +9,16 @@ typedef struct node{
 
 typedef struct tree{
     NODE* root_node;
+    int count;
 } TREE;
 
 TREE* create_tree(void);
 NODE* create_node(int val);
 NODE* insert_node(NODE* node, NODE* new_node);
+NODE* minNode(NODE* node);
+NODE* delete_node(NODE* node, int val);
 void inorder_print(NODE* root_node);
 void search_tree(NODE* node, int val);
-void delete_node(NODE* node, int val);
 
 int main(void){
 
@@ -25,7 +27,7 @@ int main(void){
         printf("memory full.\n");
     }
 
-    int values[10] = {1,9,2,1,0,10,5,3,18,3};
+    int values[7] = {9,2,10,5,3,18,3};
 
     // inserting values into binary tree.
     for(int i = 0; i < sizeof(values)/sizeof(values[0]); i++){
@@ -37,11 +39,16 @@ int main(void){
         }
     }
 
+    // print binary search tree
     inorder_print(tree->root_node);
     printf("\n");
-    search_tree(tree->root_node, 100);
-    delete_node(tree->root_node, 10);
+
+    // delete root node (which is 9)
+    tree->root_node = delete_node(tree->root_node, 9);
+
+    // print new binary search tree
     inorder_print(tree->root_node);
+    printf("\n");
 
     return 0;
 }
@@ -113,20 +120,49 @@ void search_tree(NODE* node, int val){
     }
 }
 
-// not complete
-void delete_node(NODE* node, int val){
+NODE* minNode(NODE* node){
+    if(!node->left){
+        return node;
+    } else{
+        return minNode(node->left);
+    }
+}
+
+NODE* delete_node(NODE* node, int val){
     if(!node){
         printf("%d not found.\n", val);
-        return;
-    } else if(node->data == val){
-        printf("%d deleted.\n", val);
-        free(node);
-        return;
+        return NULL;
     }
 
     if(node->data > val){
-        return delete_node(node->left, val);
-    } else{
-        return delete_node(node->right, val);
+        node->left = delete_node(node->left, val);
+    }
+    else if(node->data < val){
+        node->right = delete_node(node->right, val);
+    }
+    else{
+        if(node->right == NULL && node->left == NULL){
+            NODE* temp = node->left;
+            free(node);
+            return temp;
+        }
+        else if(node->right == NULL){
+            NODE* temp = node->left;
+            free(node);
+            return temp;
+        }
+        else if(node->left == NULL){
+            NODE* temp = node->right;
+            free(node);
+            return temp;
+        }
+        else{
+            NODE* temp = minNode(node->right);
+            node->data = temp->data;
+            node->right = delete_node(node->right, temp->data);
+            return node;
+        }
     }
 }
+
+

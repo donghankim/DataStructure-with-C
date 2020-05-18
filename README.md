@@ -457,7 +457,79 @@ A binary tree is one where all nodes in the tree cannot have more than 2 childre
 A binary search tree is one variant of the binary tree. Searching, inserting and deleting elements are efficient when using a binary search tree structure. In order to create a valid binary tree, we need to keep three properties:
 1. All items in the left subtree are less than the root.
 2. All items in the right subtree are greater than or equal to the root.
-3. Each subtree is itself a binary tree.
+3. <strong>Each subtree is itself a binary search tree.</strong>
+
+When using a binary search tree, one algorithm we use often is <strong>recursion</strong>. If you are not sure about recursion check out my algorithms with python repository. The reason why recursion is suitable for BST (binary search tree) is because of condition 3 (each subree is itself a BST). So if you dont understand recursion, I highly recommend you study recursion first before coming back to BST.
+
+I have created a basic BST program using the following structs:
+```c
+typedef struct node{
+    int data;
+    struct node* left;
+    struct node* right;
+} NODE;
+
+typedef struct tree{
+    NODE* root_node;
+    int count;
+} TREE;
+```
+Each node in the BST will contain an integer value called data, and pointers to the left and right child. The tree struct simplyly contains the root node of the BST (you can add aditional information such as the number of nodes in the BST if you want to).
+
+<strong>Inserting Nodes</strong>
+```c
+NODE* create_node(int val){
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
+
+    if(!new_node){
+        return NULL;
+    } else{
+        new_node->data = val;
+        new_node->left = NULL;
+        new_node->right = NULL;
+    }
+    return new_node;
+}
+
+NODE* insert_node(NODE* node, NODE* new_node){
+    // node represents the root node when the function is called first.
+    if(!node){
+        node = new_node;
+        return node;
+    }
+
+    if(node->data > new_node->data){
+        node->left = insert_node(node->left, new_node);
+        return node;
+    } else{
+        node->right =  insert_node(node->right, new_node);
+        return node;
+    }
+}
+
+int main(void){
+
+    TREE* tree = create_tree();
+    if(!tree){
+        printf("memory full.\n");
+    }
+
+    int values[8] = {9,2,1,10,5,3,18,3};
+
+    // inserting values into binary tree.
+    for(int i = 0; i < sizeof(values)/sizeof(values[0]); i++){
+        NODE* new_node = create_node(values[i]);
+        if(!new_node){
+            printf("memory is full, could not insert %d.\n", values[i]);
+        } else{
+            tree->root_node = insert_node(tree->root_node, new_node);
+        }
+    }
+    return 0;
+}
+```
+In order to insert a new node, we use the <strong>create_node</strong> function to first create a node of type struct node. Then, in the <strong>insert_node</strong> function, we use recursion to indetify the location we want to insert our new node into. For example, consider the case when the values we want to insert is simply 9,2 and 1. The root node is created and 9 is assigned. Then when we insert the value 2, and one recursiv call is made. When we insert the value 2, two recursive calls are made. In all three cases, when the insert_node function terminates, we recieve the <strong>root node</strong> of the BST. This concept might be a little difficult to grasp so try writing down the function execution sequence.
+
 
 
 
