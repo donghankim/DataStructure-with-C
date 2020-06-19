@@ -564,3 +564,23 @@ The last case is when the node we are tyring to remove has 2 child nodes. In thi
     }
 ```
 Check out the Binary Search Tree folder for the complete implementation.
+
+### Heaps
+Heaps are another form of a tree data structure. However, unlike all the other trees covered thus far, heaps can be implmeneted using only an array (more on this later). As a result, it is an extremly convinient data structure to use. There are two types of heaps: max-heap and min-heap. These are the three properties that all heaps (max and min) must satisty:
+1. The tree must be complete or nearly complete at all times.
+2. The root node must contain the largest value (max-heap) or the smallest value (min-heap) at all times.
+3. In the case of max-heap , as the depth of the tree increases, the nodes must also decrease (in other words, the elements in the tree get smaller as the depth of the tree increases).
+
+For this respository, I will only max-heap, but implementing min-heap should not be a problem if you understand max-heap. As mentioned above, the root node of max-heap must contain the largest element in the entre tree. The reason why we can implement a heap using an array is because of the first property (balanced or nearly balanced at all times). Therefore, when locating the left child, right child and parent given a node, we can find the index by using the following equation:
+1. Left child = 2i + 1
+2. Right child = 2i + 2
+3. Parent = floor((i-1)/2)
+
+With heaps, we usually dont perform traversals since heap traversals dont provide any useful information. The only two operations we are concerned with are insertion and deletion. When inserting a node to a heap, we always insert the node into the first available "slot" (the rightmost leaf mode). After inserting the node, we have to perform an operation called <strong>heapify-up</strong>. Heapify-up ensures that he heap maintains its structure (the three properties) after the insertion of the new node.
+
+Removing an element follows a similar principle. We first replace the node we want to delete in the heap with the "last" node in our heap. This is going to be th last element in the array. Then we have to perform <strong>heapify-down</strong> starting from that node. Usually when removing nodes, we do so from the root, however, we can still remove nodes that is not the root.
+
+My implementation of the max-heap data structure can be found in the Heaps folder.
+
+### AVL Trees
+
